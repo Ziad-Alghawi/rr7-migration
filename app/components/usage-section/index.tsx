@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@rescui/button';
 import { useTextStyles } from '@rescui/typography';
 import { cardCn } from '@rescui/card';
@@ -14,11 +14,13 @@ import './index.scss';
 function UsageSectionContent() {
     const textCn = useTextStyles();
 
-    const savedOrder =
-        typeof window !== "undefined"
-            ? localStorage.getItem("kotlin-testimonials-order")
-            : null;
-    const [sortByName, setSortByName] = useState(savedOrder === 'name');
+    const [sortByName, setSortByName] = useState(false);
+
+    useEffect(() => {
+        const savedOrder = localStorage.getItem('kotlin-testimonials-order');
+        setSortByName(savedOrder === 'name');
+    }, []);
+
     const sortedTestimonials = sortByName
         ? [...testimonials].sort((a, b) => a.company.localeCompare(b.company))
         : testimonials;

@@ -49,7 +49,7 @@ const sections = [
     },
 ];
 
-function YouTubeEmbed({id}) {
+function YouTubeEmbed({ id }: { id: string }) {
     return (
         <div className="why-kotlin-section__youtube">
             <iframe
@@ -93,7 +93,7 @@ function WhyKotlinContent() {
 
                         <div className="kto-col-8 kto-col-md-12">
                             {section.media === 'youtube' && (
-                                <YouTubeEmbed id={section.youtubeId}/>
+                                <YouTubeEmbed id={section.youtubeId!}/>
                             )}
                             {section.media === 'image' && (
                                 <img
